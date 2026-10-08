@@ -1,0 +1,14 @@
+{
+  "name": "sections-api",
+  "version": "1.0.0",
+  "description": "Kt1_NodeJs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^18.0.6",
+    "express": "^5.2.1"
+  }
+}
