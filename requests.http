@@ -1,0 +1,101 @@
+### 1 Список всех занятий
+GET http://localhost:3000/lessons
+
+### 2 Фильтр по дню недели
+GET http://localhost:3000/lessons?weekday=mon
+
+### 3 Одно занятие
+GET http://localhost:3000/lessons/3
+
+### 4) 404
+GET http://localhost:3000/lessons/999
+
+### 5 Создать занятие
+POST http://localhost:3000/lessons
+Content-Type: application/json
+
+{
+  "title": "Волейбол",
+  "weekday": "tue",
+  "startTime": "17:00",
+  "endTime": "18:00"
+}
+
+### 6 Ошибка валидации по плохому дню недели
+POST http://localhost:3000/lessons
+Content-Type: application/json
+
+{
+  "title": "Волейбол",
+  "weekday": "monday",
+  "startTime": "17:00",
+  "endTime": "18:00"
+}
+
+### 7 Ошибка валидации по плохому формат времени
+POST http://localhost:3000/lessons
+Content-Type: application/json
+
+{
+  "title": "Волейбол",
+  "weekday": "tue",
+  "startTime": "5pm",
+  "endTime": "18:00"
+}
+
+### 8 пересечение с Футболом в пн
+POST http://localhost:3000/lessons
+Content-Type: application/json
+
+{
+  "title": "Бокс",
+  "weekday": "mon",
+  "startTime": "11:00",
+  "endTime": "12:30"
+}
+
+### 9 обновление PUT
+PUT http://localhost:3000/lessons/3
+Content-Type: application/json
+
+{
+  "title": "Шахматы (продвинутые)",
+  "weekday": "tue",
+  "startTime": "15:30",
+  "endTime": "16:30"
+}
+
+### 10 PUT с ошибкой
+PUT http://localhost:3000/lessons/3
+Content-Type: application/json
+
+{
+  "weekday": "tue",
+  "startTime": "15:30",
+  "endTime": "16:30"
+}
+
+### 11 обновление PATCH
+PATCH http://localhost:3000/lessons/4
+Content-Type: application/json
+
+{
+  "title": "Баскетбол для новичков"
+}
+
+### 12 PATCH с пересечением
+PATCH http://localhost:3000/lessons/2
+Content-Type: application/json
+
+{
+  "startTime": "11:00"
+}
+
+### 13 удалить занятие 204
+DELETE http://localhost:3000/lessons/8
+
+### 14 удалить несуществующее 404
+DELETE http://localhost:3000/lessons/999
+
+### 15 несуществующий маршрут 404
+GET http://localhost:3000/abc
